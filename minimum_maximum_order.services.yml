@@ -1,0 +1,5 @@
+services:
+  minimum_maximum_order_validate_min_max_subscriber:
+    class: '\Drupal\minimum_maximum_order\EventSubscriber\ValidateMinMaxSubscriber'
+    tags:
+      - { name: 'event_subscriber' }

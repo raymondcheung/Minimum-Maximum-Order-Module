@@ -1,0 +1,6 @@
+minimum_maximum_order.admin_settings_form:
+  title: 'Minimum Maximum Order Configuration'
+  route_name: minimum_maximum_order.admin_settings_form
+  description: 'Minimum maximum order admin'
+  parent: system.admin_config_system
+  weight: 99

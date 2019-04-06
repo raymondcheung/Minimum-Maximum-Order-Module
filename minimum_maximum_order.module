@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Contains minimum_maximum_order.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function minimum_maximum_order_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the minimum_maximum_order module.
+    case 'help.page.minimum_maximum_order':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Validate Order Based On Minimum and Maximum Total') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function minimum_maximum_order_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  if (strpos($form_id,"views_form_commerce_cart_form_default_") !== false) {
+    $minimum = $config = \Drupal::config('minimum_maximum_order.adminsettings')->get('minimum_order');
+    $order_id = $form['output'][0]['#view']->footer['commerce_order_total']->view->args[0];
+    $orders = \Drupal::entityTypeManager()
+                ->getStorage('commerce_order')
+                ->loadByProperties(['order_id' => $order_id]);
+    $order = reset($orders);
+    $total_price = $order->getTotalprice()->getNumber();
+    if ($total_price < $minimum) {
+      // make checkout button as disabled
+      $form['actions']['checkout']['#attributes']['disabled'] = true;
+      $form['#prefix'] = '<div class="alert alert-danger" role="alert">$35 Minimum not met</div>';
+
+    }
+  }
+}
+

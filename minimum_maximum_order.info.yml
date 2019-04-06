@@ -1,0 +1,7 @@
+name: 'Minimum Maximum Order'
+type: module
+description: 'Validate Order Based On Minimum and Maximum Total'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - drupal:commerce

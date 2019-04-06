@@ -1,0 +1,14 @@
+{
+  "name": "drupal/minimum_maximum_order",
+  "type": "drupal-module",
+  "description": "Validate Order Based On Minimum and Maximum Total",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/minimum_maximum_order",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/minimum_maximum_order",
+    "source": "http://cgit.drupalcode.org/minimum_maximum_order"
+  },
+  "require": { }
+}
